@@ -42,12 +42,12 @@ namespace TechJobsConsole
         {
             // load data, if not already loaded
             LoadData();
-
+            string normalizedValue = value.ToLower();
             List<Dictionary<string, string>> jobs = new List<Dictionary<string, string>>();
 
             foreach (Dictionary<string, string> row in AllJobs)
             {
-                string aValue = row[column];
+                string aValue = row[column].ToLower();
 
                 if (aValue.Contains(value))
                 {
@@ -137,6 +137,43 @@ namespace TechJobsConsole
             valueBuilder.Clear();
 
             return rowValues.ToArray();
+        }
+        public static List<Dictionary<string, string>> FindByValue(string value)
+        {
+            // load data, if not already loaded
+            LoadData();
+
+            List<Dictionary<string, string>> jobs = new List<Dictionary<string, string>>();
+            //for (int i = 0; i < AllJobs.Count; i++)
+            //{
+            //    if (AllJobs[i].ContainsValue(value))
+            //    {
+            //        Dictionary<string, string> row = AllJobs[i];
+            //        jobs.Add(row);
+            //    }
+            //}
+            string normalizedValue = value.ToLower();
+
+            foreach (Dictionary<string, string> row in AllJobs)
+            {
+                foreach (string jobValue in row.Values)
+                {
+                    string aValue = jobValue.ToLower();
+
+                    if (aValue.Contains(normalizedValue))
+                    {
+                        if (jobs.Contains(row))
+                        {
+
+                        }
+                        else
+                        {
+                            jobs.Add(row);
+                        }
+                    }
+                }
+            }
+            return jobs;
         }
     }
 }
