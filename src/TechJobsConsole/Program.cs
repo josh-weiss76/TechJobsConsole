@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace TechJobsConsole
 {
@@ -118,7 +119,30 @@ namespace TechJobsConsole
 
         private static void PrintJobs(List<Dictionary<string, string>> someJobs)
         {
-            Console.WriteLine("PrintJobs is not implemented yet");
+            if (someJobs.Count == 0)
+            {
+                Console.WriteLine("No job listings match your search criteria, please try again.");
+            }
+            for (int i = 0; i < someJobs.Count; i++)
+            {
+                List<string> listingHead = new List<string>();
+                List<string> jobListing = new List<string>();
+                foreach (string listingHeader in someJobs[i].Keys)
+                {
+                    listingHead.Add(listingHeader);
+                }
+                foreach (string jobReqs in someJobs[i].Values)
+                {
+                    jobListing.Add(jobReqs);
+                }
+                Console.WriteLine("*****");
+                for (int j = 0; j < listingHead.Count; j++)
+                {
+                    Console.WriteLine(listingHead[j] + " : " + jobListing[j]);
+                }
+                Console.WriteLine("*****\n");
+            }
+
         }
     }
 }
