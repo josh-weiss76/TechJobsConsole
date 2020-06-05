@@ -144,14 +144,6 @@ namespace TechJobsConsole
             LoadData();
 
             List<Dictionary<string, string>> jobs = new List<Dictionary<string, string>>();
-            //for (int i = 0; i < AllJobs.Count; i++)
-            //{
-            //    if (AllJobs[i].ContainsValue(value))
-            //    {
-            //        Dictionary<string, string> row = AllJobs[i];
-            //        jobs.Add(row);
-            //    }
-            //}
             string normalizedValue = value.ToLower();
 
             foreach (Dictionary<string, string> row in AllJobs)
